@@ -1,5 +1,5 @@
 <center>
-   <img src="assets/banner.png" alt="Buildepot Logo"/>
+   <img src="static/banner.png" alt="Buildepot Logo"/>
 
    <!--[![Twitter](https://img.shields.io/badge/Twitter-@Buildepot-blue.svg?style=for-the-badge&logo=twitter)](https://twitter.com/Buildepot) [![Discord](https://img.shields.io/badge/Discord-Join%20Us-7289DA.svg?style=for-the-badge&logo=discord)](https://discord.gg/your-discord-link) [![GitHub](https://img.shields.io/badge/GitHub-Repo-black.svg?style=for-the-badge&logo=github)](https://github.com/your-username/buildepot)
    TBA -->
