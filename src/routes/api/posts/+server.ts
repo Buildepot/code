@@ -7,9 +7,9 @@ export const POST = async ({ request }) => {
     // Validate that the comment is not purely whitespaces/empty
     const trimmedComment : string = comment.trim();
     if (!trimmedComment) {
-        throw new ValidationError("Comment cannot be empty or whitespace only.");
+        return new Response(JSON.stringify({ message: "Comment cannot be empty or whitespace only." }), { status : 400 });
     }
 
     // Proceed with saving the comment
-    return new Response(JSON.stringify({ message: `Success ${trimmedComment}` }), { status : 201});
+    return new Response(JSON.stringify({ message: `Success ${trimmedComment}` }), { status : 201 });
 };
