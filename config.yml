@@ -1,0 +1,5 @@
+# Maximal number of characters a comment can have
+COMMENT_MAX_LENGTH: 500;
+
+# Maximal number of images one can use for a Submission
+IMAGE_MAX_NUMBER: 10;
