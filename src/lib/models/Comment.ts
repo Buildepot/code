@@ -1,14 +1,12 @@
 import type {Profile} from "$lib/models/Profile";
 import {Submission} from "$lib/models/Submission";
-import { json, error } from '@sveltejs/kit';
-import {ValidationError} from "../../errors/ValidationError";
 
 export class Comment extends Submission {
 
     // Content of the comment
     private comment : string;
 
-    // Replies/sub-comments
+    // Other properties of a comment
     private replies : Comment[] = [];
 
     constructor(author : Profile, date : Date, comment : string) {
@@ -16,20 +14,33 @@ export class Comment extends Submission {
         this.comment = comment;
     }
 
-    getComment() : string {
+    /**
+     * Retrieve the comment's content
+     */
+    getContent() : string {
         return this.comment;
     }
 
+    /**
+     * Retrieve the replies of the comment
+     */
     getReplies() : Comment[] {
         return this.replies;
     }
 
+    /**
+     * Add a reply to the comment
+     * @param comment
+     */
     addReply(comment : Comment) : void {
         this.replies.push(comment);
     }
 
+    /**
+     * Remove a reply from a comment
+     * @param comment
+     */
     removeReply(comment : Comment) : void {
         this.replies = this.replies.filter(c => c === comment);
     }
-
 }
