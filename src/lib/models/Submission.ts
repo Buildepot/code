@@ -8,15 +8,16 @@ export abstract class Submission {
     // Metadata of the submission
     author : Profile;
     date : Date;
-    name : string;
 
     // Likes for a submission (rating)
     likes : number = 0;
 
-    protected constructor(author : Profile, date : Date, name : string) {
+    // List of comments
+    private comments : Comment[] = [];
+
+    protected constructor(author : Profile, date : Date) {
         this.author = author;
         this.date = date;
-        this.name = name;
     }
 
     /**
@@ -31,13 +32,6 @@ export abstract class Submission {
      */
     getDate() : Date {
         return this.date;
-    }
-
-    /**
-     * Retrieve the name of the submission
-     */
-    getName() : string {
-        return this.name;
     }
 
     /**
@@ -59,5 +53,28 @@ export abstract class Submission {
      */
     removeLike() : void {
         this.likes -= 1;
+    }
+
+    /**
+     * Retrieve the replies of the comment
+     */
+    getReplies() : Comment[] {
+        return this.comments;
+    }
+
+    /**
+     * Add a reply to the comment
+     * @param comment
+     */
+    addReply(comment : Comment) : void {
+        this.comments.push(comment);
+    }
+
+    /**
+     * Remove a reply from a comment
+     * @param comment
+     */
+    removeReply(comment : Comment) : void {
+        this.comments = this.comments.filter(c => c === comment);
     }
 }

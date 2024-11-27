@@ -1,20 +1,39 @@
 import {Submission} from "$lib/models/Submission";
 import type {Profile} from "$lib/models/Profile";
 
+/**
+ * Builds are submissions featuring Minecraft creations
+ */
 export class Build extends Submission {
 
     // List of comments
     private comments : Array<Comment> = new Array<Comment>();
 
     // Presentation
+    private name : string;
     private images : Array<URL> = new Array<URL>(10); //todo
     private downloadLink : URL | null;
     private description : string | null;
 
     constructor(author : Profile, date : Date, name: string, downloadLink : string | null, description : string | null) {
-        super(author, date, name);
+        super(author, date);
+        this.name = name;
         this.downloadLink = downloadLink ? new URL(downloadLink) : null;
         this.description = description;
+    }
+
+    /**
+     * Retrieve the name of the build
+     */
+    getName() : string {
+        return this.name;
+    }
+
+    /**
+     * Set the name of the build
+     */
+    setName(name : string ): void {
+        this.name = name;
     }
 
     /**

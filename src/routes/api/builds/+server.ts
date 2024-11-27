@@ -1,5 +1,10 @@
 import { config } from '$lib/config';
 
+/**
+ * Submit a Build
+ * @param request
+ * @constructor
+ */
 export const POST = async ({ request }) => {
     const {
         name,

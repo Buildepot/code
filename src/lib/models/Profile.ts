@@ -1,5 +1,8 @@
 import type {Submission} from "$lib/models/Submission";
 
+/**
+ * The user
+ */
 export class Profile {
 
     // Fundamental details
@@ -22,11 +25,51 @@ export class Profile {
     }
 
     /**
-     * Retrieve the
+     * Retrieve the ID of the user
+     */
+    getId() : number {
+        return this.id;
+    }
+
+    /**
+     * Retrieve the name of the user
+     */
+    getName() : string {
+        return this.name;
+    }
+
+    /**
+     * Retrieve the email of the user
+     */
+    getEmail() : string {
+        return this.email;
+    }
+
+    /**
+     * Retrieve all submissions made by the user
      */
     getSubmissions() : Submission[] {
         return Array.from(this.submissions);
     }
 
+    /**
+     * Retrieve all comments made by the user
+     */
+    getComments() : Comment[] {
+        return Array.from(this.comments);
+    }
 
+    /**
+     * Retrieve all subscribers of the user
+     */
+    getSubscribers() : Profile[] {
+        return Array.from(this.subscribers);
+    }
+
+    /**
+     * Retrieve all the profiles the user is subscribed to
+     */
+    getSubscriptions() : Profile[] {
+        return Array.from(this.subscriptions);
+    }
 }
