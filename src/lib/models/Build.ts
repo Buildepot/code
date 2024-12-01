@@ -6,16 +6,13 @@ import type {Profile} from "$lib/models/Profile";
  */
 export class Build extends Submission {
 
-    // List of comments
-    private comments : Array<Comment> = new Array<Comment>();
-
     // Presentation
     private name : string;
     private images : Array<URL> = new Array<URL>(10); //todo
     private downloadLink : URL | null;
     private description : string | null;
 
-    constructor(author : Profile, date : Date, name: string, downloadLink : string | null, description : string | null) {
+    constructor(author : Profile, date : Date, name: string, downloadLink : string | null = null, description : string | null = null) {
         super(author, date);
         this.name = name;
         this.downloadLink = downloadLink ? new URL(downloadLink) : null;
@@ -32,23 +29,8 @@ export class Build extends Submission {
     /**
      * Set the name of the build
      */
-    setName(name : string ): void {
+    setName(name : string): void {
         this.name = name;
-    }
-
-    /**
-     * Retrieve all comments of the build
-     */
-    getComments() : Array<Comment> {
-        return this.comments;
-    }
-
-    /**
-     * Add a comment to the build
-     * @param comment comment for the build
-     */
-    addComment(comment : Comment) : void {
-        this.comments.push(comment);
     }
 
     /**
