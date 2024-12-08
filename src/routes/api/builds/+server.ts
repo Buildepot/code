@@ -22,7 +22,7 @@ export const POST = async ({ request }) => {
 
     // Validate required fields
     if (!name || !author) {
-        return new Response(JSON.stringify({ message: "Name, author, and download link are required." }),
+        return new Response(JSON.stringify({ message: "Name and author are required." }),
             { status: 400 });
     }
 
@@ -36,8 +36,14 @@ export const POST = async ({ request }) => {
         );
     }
 
+    // Validate that the name is not purely whitespaces/empty
+    const trimmedName : string = name.trim();
+    if (!trimmedName) {
+        return new Response(JSON.stringify({ message: "Name cannot be empty or whitespace only." }), { status : 400 });
+    }
+
     // Validate description length
-    if (description.length > config.SUBMISSION_DESCRIPTION_MAX_LENGTH) {
+    if (description && description.length > config.SUBMISSION_DESCRIPTION_MAX_LENGTH) {
         return new Response(
             JSON.stringify({
                 message: `Description cannot exceed ${config.SUBMISSION_DESCRIPTION_MAX_LENGTH} characters.`,
@@ -47,10 +53,12 @@ export const POST = async ({ request }) => {
     }
 
     // Validate download link format (basic validation)
-    try {
-        new URL(downloadLink);
-    } catch {
-        return new Response(JSON.stringify({ message: "Invalid download link URL." }), { status: 400 });
+    if (downloadLink) {
+        try {
+            new URL(downloadLink);
+        } catch {
+            return new Response(JSON.stringify({ message: "Invalid download link URL." }), { status: 400 });
+        }
     }
 
     // Proceed with saving the build

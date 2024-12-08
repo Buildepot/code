@@ -12,5 +12,5 @@ export const config = {
     SUBMISSION_NAME_MAX_LENGTH: 60,
 
     // Maximal number of characters a Profile name can have
-    NAME_MAX_LENGTH: 30,
+    PROFILE_NAME_MAX_LENGTH: 30,
 }
