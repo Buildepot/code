@@ -24,7 +24,7 @@ export const POST = async ({ request }) => {
 
     // Validate the name length
     if (name.length > config.COMMENT_MAX_LENGTH) {
-        return new Response(JSON.stringify({ message: `Name cannot exceed ${config.NAME_MAX_LENGTH} characters.` }),
+        return new Response(JSON.stringify({ message: `Name cannot exceed ${config.PROFILE_NAME_MAX_LENGTH} characters.` }),
             { status : 400 });
     }
 
