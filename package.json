@@ -9,6 +9,7 @@
       "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
       "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
       "test": "NODE_ENV=test vitest",
+      "migrate:create": "pnpm tsx -r tsconfig-paths/register node_modules/@mikro-orm/cli/cli.js migration:create --initial",
       "migrate:up": "pnpm mikro-orm-esm migration:up",
       "migrate:down": "pnpm mikro-orm-esm migration:down",
       "mikro-orm:migrate:reset": "mikro-orm-esm migration:down --to 0 && mikro-orm migration:up"
