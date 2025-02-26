@@ -1,22 +1,41 @@
 {
-	"name": "code",
-	"version": "0.0.1",
-	"type": "module",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-auto": "^3.3.1",
-		"@sveltejs/kit": "^2.9.0",
-		"@sveltejs/vite-plugin-svelte": "^4.0.2",
-		"svelte": "^5.8.1",
-		"svelte-check": "^4.1.1",
-		"typescript": "^5.7.2",
-		"vite": "^5.4.11",
-		"vitest": "^2.1.8"
-	}
+   "name": "code",
+   "version": "0.0.1",
+   "type": "module",
+   "scripts": {
+      "dev": "vite dev",
+      "build": "vite build",
+      "preview": "vite preview",
+      "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+      "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+      "test": "NODE_ENV=test vitest",
+      "migrate:up": "pnpm mikro-orm-esm migration:up",
+      "migrate:down": "pnpm mikro-orm-esm migration:down",
+      "mikro-orm:migrate:reset": "mikro-orm-esm migration:down --to 0 && mikro-orm migration:up"
+   },
+   "devDependencies": {
+      "@mikro-orm/cli": "^6.4.7",
+      "@mikro-orm/core": "^6.4.7",
+      "@mikro-orm/postgresql": "^6.4.7",
+      "@sveltejs/adapter-auto": "^3.3.1",
+      "@sveltejs/kit": "^2.17.3",
+      "@sveltejs/vite-plugin-svelte": "^4.0.4",
+      "@types/pg": "^8.11.11",
+      "pg-test-util": "^3.2.1",
+      "svelte": "^5.20.4",
+      "svelte-check": "^4.1.4",
+      "ts-node": "10.9.1",
+      "tsx": "^4.19.3",
+      "typescript": "5.7.3",
+      "vite": "^5.4.14",
+      "vitest": "^2.1.9"
+   },
+   "dependencies": {
+      "@mikro-orm/migrations": "^6.4.7",
+      "@types/node": "^22.13.5",
+      "dotenv": "^16.4.7",
+      "pg": "^8.13.3",
+      "reflect-metadata": "^0.2.2",
+      "tsconfig-paths": "^4.2.0"
+   }
 }

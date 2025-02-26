@@ -1,4 +1,5 @@
 import type {Profile} from "$lib/models/Profile";
+import {config} from "$lib/config";
 
 /**
  * All items of the platform that can be submitted by a user
@@ -6,6 +7,7 @@ import type {Profile} from "$lib/models/Profile";
 export abstract class Submission {
 
     // Metadata of the submission
+    id : number;
     author : Profile;
     date : Date;
 
@@ -15,9 +17,17 @@ export abstract class Submission {
     // List of comments
     private comments : Comment[] = [];
 
-    protected constructor(author : Profile, date : Date) {
+    protected constructor(id : number, author : Profile, date : Date) {
+        this.id = id;
         this.author = author;
         this.date = date;
+    }
+
+    /**
+     * Retrieve the ID of the submission
+     */
+    getId() : number {
+        return this.id;
     }
 
     /**

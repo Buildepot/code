@@ -1,5 +1,6 @@
 import {Submission} from "$lib/models/Submission";
 import type {Profile} from "$lib/models/Profile";
+import {config} from "../config";
 
 /**
  * Builds are submissions featuring Minecraft creations
@@ -12,8 +13,8 @@ export class Build extends Submission {
     private downloadLink : URL | null;
     private description : string | null;
 
-    constructor(author : Profile, date : Date, name: string, downloadLink : string | null = null, description : string | null = null) {
-        super(author, date);
+    constructor(id : number, author : Profile, date : Date, name: string, downloadLink : string | null = null, description : string | null = null) {
+        super(id, author, date);
         this.name = name;
         this.downloadLink = downloadLink ? new URL(downloadLink) : null;
         this.description = description;
@@ -84,5 +85,20 @@ export class Build extends Submission {
      */
     setDescription(description : string | null) : void {
         this.description = description;
+    }
+
+    /**
+     * Create a new empty SQL table of the Build model
+     */
+    static createTableSQL(): string {
+        return `
+      CREATE TABLE IF NOT EXISTS builds (
+        id INT PRIMARY KEY REFERENCES submissions(id),
+        name VARCHAR(${config.SUBMISSION_NAME_MAX_LENGTH}) NOT NULL,
+        images TEXT[${config.IMAGE_MAX_NUMBER}] NOT NULL,
+        downloadLink VARCHAR(${config.DOWNLOAD_LINK_MAX_LENGTH}),
+        description VARCHAR(${config.SUBMISSION_DESCRIPTION_MAX_LENGTH}),
+      );
+    `;
     }
 }
