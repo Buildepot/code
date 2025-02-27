@@ -30,17 +30,4 @@ export class Comment extends Submission {
     getContent() : string {
         return this.body;
     }
-
-    /**
-     * Create a new empty SQL table of the Comment model
-     */
-    static createTableSQL(): string {
-        return `
-      CREATE TABLE IF NOT EXISTS comments (
-        id INT PRIMARY KEY REFERENCES submissions(id),
-        parent_id INT NOT NULL REFERENCES submissions(id),
-        body VARCHAR(${config.COMMENT_MAX_LENGTH}) NOT NULL,
-      );
-    `;
-    }
 }

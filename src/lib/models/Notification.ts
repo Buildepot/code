@@ -66,26 +66,6 @@ export class Notification {
     setRead() {
         this.read = true;
     }
-
-    /**
-     * Create a new empty SQL table of the Notification model
-     */
-    static createTableSQL(): string {
-        const notificationTypes : string = Object.values(NotificationType).map((value) => `'${value.toString().toLowerCase()}'`).join(', ');
-
-        return `
-      CREATE TYPE notification_type AS ENUM (${notificationTypes});
-      
-      CREATE TABLE IF NOT EXISTS comments (
-        id SERIAL PRIMARY KEY,
-        profile_id INT NOT NULL REFERENCES profiles(id),
-        date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        type notification_type NOT NULL,
-        body TEXT,
-        read BOOLEAN
-      );
-    `;
-    }
 }
 
 export enum NotificationType {

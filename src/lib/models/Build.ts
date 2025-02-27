@@ -86,19 +86,4 @@ export class Build extends Submission {
     setDescription(description : string | null) : void {
         this.description = description;
     }
-
-    /**
-     * Create a new empty SQL table of the Build model
-     */
-    static createTableSQL(): string {
-        return `
-      CREATE TABLE IF NOT EXISTS builds (
-        id INT PRIMARY KEY REFERENCES submissions(id),
-        name VARCHAR(${config.SUBMISSION_NAME_MAX_LENGTH}) NOT NULL,
-        images TEXT[${config.IMAGE_MAX_NUMBER}] NOT NULL,
-        downloadLink VARCHAR(${config.DOWNLOAD_LINK_MAX_LENGTH}),
-        description VARCHAR(${config.SUBMISSION_DESCRIPTION_MAX_LENGTH}),
-      );
-    `;
-    }
 }
