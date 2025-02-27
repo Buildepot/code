@@ -12,15 +12,20 @@
       "migrate:create": "pnpm tsx -r tsconfig-paths/register node_modules/@mikro-orm/cli/cli.js migration:create --initial",
       "migrate:up": "pnpm mikro-orm-esm migration:up",
       "migrate:down": "pnpm mikro-orm-esm migration:down",
-      "mikro-orm:migrate:reset": "mikro-orm-esm migration:down --to 0 && mikro-orm migration:up"
+      "mikro-orm:migrate:reset": "mikro-orm-esm migration:down --to 0 && mikro-orm migration:up",
+      "seeder:create": "pnpm tsx -r tsconfig-paths/register node_modules/@mikro-orm/cli/cli.js seeder:create"
    },
    "devDependencies": {
+      "@faker-js/faker": "^9.5.0",
       "@mikro-orm/cli": "^6.4.7",
       "@mikro-orm/core": "^6.4.7",
+      "@mikro-orm/migrations": "^6.4.7",
       "@mikro-orm/postgresql": "^6.4.7",
+      "@mikro-orm/seeder": "^6.4.7",
       "@sveltejs/adapter-auto": "^3.3.1",
       "@sveltejs/kit": "^2.17.3",
       "@sveltejs/vite-plugin-svelte": "^4.0.4",
+      "@types/node": "^22.13.5",
       "@types/pg": "^8.11.11",
       "pg-test-util": "^3.2.1",
       "svelte": "^5.20.4",
@@ -32,8 +37,6 @@
       "vitest": "^2.1.9"
    },
    "dependencies": {
-      "@mikro-orm/migrations": "^6.4.7",
-      "@types/node": "^22.13.5",
       "dotenv": "^16.4.7",
       "pg": "^8.13.3",
       "reflect-metadata": "^0.2.2",

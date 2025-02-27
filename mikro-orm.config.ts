@@ -1,6 +1,7 @@
 import { MikroORM } from '@mikro-orm/core';
 import { defineConfig } from '@mikro-orm/postgresql';
 import dotenv from "dotenv";
+import {SeedManager} from "@mikro-orm/seeder";
 
 // Decide which environment to use depending on the context (prod., test, ...)
 const envFile = process.env.NODE_ENV === 'test' ? '.env.test' : '.env';
@@ -25,8 +26,7 @@ export default defineConfig({
     user: getEnvVar('POSTGRES_USER'),
     password: getEnvVar('POSTGRES_PASSWORD'),
     dbName: getEnvVar('POSTGRES_DB'),
-    entities: ['src/lib/db/entities/*.ts'],//chatgpt said its bad, and we should instead import them individually like so:
-    //todo perhaps this one, as chatgpt says entities: [SubmissionEntity, BuildEntity, CommentEntity, ProfileEntity, NotificationEntity],
+    entities: ['src/lib/db/entities/*.ts'],
     entitiesTs: ['src/lib/db/entities/*.ts'], // for CLI
     discovery: {
         warnWhenNoEntities: false,
@@ -39,6 +39,11 @@ export default defineConfig({
     pool: {
         min: 2,
         max: 10, // Internal connection pooling
+    },
+    extensions: [SeedManager],
+    seeder: {
+        path: './src/seeders',
+        defaultSeeder: 'DatabaseSeeder',
     },
     //tsNode: true,
 }) as Parameters<typeof MikroORM.init>[0];

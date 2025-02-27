@@ -1,6 +1,5 @@
 import { Entity, PrimaryKey, ManyToOne, Property, OneToMany, Collection, type Rel } from '@mikro-orm/core';
 import { ProfileEntity } from './ProfileEntity';
-import type { CommentEntity } from "$lib/db/entities/CommentEntity";
 
 @Entity()
 export class SubmissionEntity {
