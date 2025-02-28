@@ -1,11 +1,12 @@
 import { config } from '$lib/config';
+import type {RequestEvent} from "@sveltejs/kit";
 
 /**
  * Submit a Build
  * @param request
  * @constructor
  */
-export const POST = async ({ request }) => {
+export const POST = async ({ request } : RequestEvent) => {
     const {
         name,
         author,
@@ -53,9 +54,21 @@ export const POST = async ({ request }) => {
     }
 
     // Validate download link format (basic validation)
+    var downloadURL : URL;
     if (downloadLink) {
+        // Validate link length
+        if (downloadLink.length > config.DOWNLOAD_LINK_MAX_LENGTH) {
+            return new Response(
+                JSON.stringify({
+                    message: `Download link cannot exceed ${config.DOWNLOAD_LINK_MAX_LENGTH} characters.`,
+                }),
+                { status: 400 }
+            );
+        }
+
+        // Validate the URL
         try {
-            new URL(downloadLink);
+           downloadURL = new URL(downloadLink);
         } catch {
             return new Response(JSON.stringify({ message: "Invalid download link URL." }), { status: 400 });
         }

@@ -2,15 +2,17 @@ import type {Profile} from "$lib/models/Profile";
 
 export class Notification {
 
-    private id : string;
+    private id : number;
     private profile : Profile;
+    private date : Date;
     private type : NotificationType;
     private body : string | null;
     private read : boolean;
 
-    constructor(id: string, profile : Profile, type : NotificationType, body : string | null = null) {
+    constructor(id : number, profile : Profile, date: Date, type : NotificationType, body : string | null = null) {
         this.id = id;
         this.profile = profile;
+        this.date = date;
         this.type = type;
         this.body = body;
         this.read = false;
@@ -19,7 +21,7 @@ export class Notification {
     /**
      * Retrieve the ID of the notification
      */
-    getId() : string {
+    getId() : number {
         return this.id;
     }
 
@@ -28,6 +30,13 @@ export class Notification {
      */
     getProfile() : Profile {
         return this.profile;
+    }
+
+    /**
+     * Retrieve the date of the notification's creation
+     */
+    getDate() : Date {
+        return this.date;
     }
 
     /**

@@ -1,11 +1,12 @@
 import { config } from '$lib/config';
+import type {RequestEvent} from "@sveltejs/kit";
 
 /**
  * Create a User Profile
  * @param request
  * @constructor
  */
-export const POST = async ({ request }) => {
+export const POST = async ({ request } : RequestEvent) => {
     const {
         name,
         email

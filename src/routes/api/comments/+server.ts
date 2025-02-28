@@ -1,11 +1,12 @@
 import { config } from '$lib/config';
+import type {RequestEvent} from "@sveltejs/kit";
 
 /**
  * Submit a Comment
  * @param request
  * @constructor
  */
-export const POST = async ({ request }) => {
+export const POST = async ({ request } : RequestEvent) => {
     const {
         body,
         author,

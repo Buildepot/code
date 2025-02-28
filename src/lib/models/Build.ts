@@ -1,5 +1,6 @@
 import {Submission} from "$lib/models/Submission";
 import type {Profile} from "$lib/models/Profile";
+import {config} from "../config";
 
 /**
  * Builds are submissions featuring Minecraft creations
@@ -12,8 +13,8 @@ export class Build extends Submission {
     private downloadLink : URL | null;
     private description : string | null;
 
-    constructor(author : Profile, date : Date, name: string, downloadLink : string | null = null, description : string | null = null) {
-        super(author, date);
+    constructor(id : number, author : Profile, date : Date, name: string, downloadLink : string | null = null, description : string | null = null) {
+        super(id, author, date);
         this.name = name;
         this.downloadLink = downloadLink ? new URL(downloadLink) : null;
         this.description = description;
